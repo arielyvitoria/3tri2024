@@ -1,52 +1,60 @@
 import { getCSS} from "./common.js"
 
 async function empregos() {
-    const url = 'https://raw.githubusercontent.com/silviosnjr/CienciaDeDados-CriandoGraficosDinamicosComJavaScript/refs/heads/Aula01/trabalho/trabalho-tipos-de-ocupacao.json'
+    const url = 'https://raw.githubusercontent.com/pmatjayme/api/refs/heads/main/ari.json'
     const res = await fetch(url)
     const dados = await res.json()
     const nomeX = Object.keys (dados)
     const empregos = Object.values (dados)
 
     const data = [
-        {
-            labels: nomeX,
-            values: empregos,
-            type: 'pie',
-            marker: { 
-              colors: ['#ff7f0e', '#1f77b4', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'] 
-            }
-        }
-    ]
+      {
+          x: nomeDasRedes, 
+          y: quantidadeDeUsuarios, 
+          type: 'bar',
+          marker: {
+              color: getCSS('--primary-color')
+          }
+      }
+  ]
 
-    const layout = 
-    {
+  const laytout = {
       plot_bgcolor: getCSS('--bg-color'),
       paper_bgcolor: getCSS('--bg-color'),
       title: {
-        text: 'Tipos de Ocupações (Trabalhos) pelo Mundo',
-        font:{
-            color: getCSS('--secundary-color'),
-            family: getCSS('--font'),
-            size: 28
-        }
+          text: 'Álbuns, de 2024, Mais Ouvidos',
+          x: 0,
+          font: {
+              color: getCSS('--primary-color'),
+              size: 30,
+              font: getCSS('--font')
+          }
       },
-      legend: { 
-        font: { 
-          color: getCSS('--secundary-color'),
-          family: getCSS('--font'), 
-          size: 16
-        }
+      xaxis: {
+          tickfont: tickConfig,
+          title: {
+              text: 'Nome dos Artistas',
+              font: {
+                  color: getCSS('--secondary-color')
+              }
+          }
       },
-      height: 600,
-      width: 870
+      yaxis: {
+          tickfont: tickConfig,
+          title: {
+              text: 'Bilhões de Ouvintes',
+              font: {
+                  color: getCSS('--secondary-color')
+              }
+          }
+      }
   }
 
-        const grafico = document.createElement('div')
-        grafico.className = 'grafico'
-        document.getElementById('graficos-container').appendChild(grafico)
-
-        Plotly.newPlot(grafico, data, layout)
-        
+  const grafico = document.createElement('div')
+  grafico.className = 'grafico'
+  document.getElementById('graficos-container').appendChild(grafico)
+  Plotly.newPlot(grafico, data, laytout)
 }
+
 
 empregos()

@@ -1,19 +1,12 @@
-const url='https://raw.githubusercontent.com/silviosnjr/CienciaDeDados-CriandoGraficosDinamicosComJavaScript/refs/heads/Aula01/trabalho/trabalho-dados-gerais.json'
+const url='https://raw.githubusercontent.com/pmatjayme/api/refs/heads/main/ari.json'
 
 async function vizualizarInformacoesGlobais() {
     const res = await fetch(url)
     const dados = await res.json()
 
-    const pessoasMundo = (dados.total_pessoas_mundo / 1e9).toFixed(1);
-    const pessoasEmpregadas = (dados.total_pessoas_empregadas / 1e9)
-    const taxaDesemprego = (dados.taxa_de_desemprego * 100)
-    const horas = parseInt(dados.tempo_medio_trabalho_por_semana)
-    const minutos = Math.round((dados.tempo_medio_trabalho_por_semana - horas) * 60)
-
     const paragrafo = document.createElement('p')
     paragrafo.classList.add('graficos-container__texto')
-    paragrafo.innerHTML = `Você sabia que o mundo tem <span>${pessoasMundo}</span> bilhões de pessoas e que aproximadamente <span>${pessoasEmpregadas}</span> bilhões estão
-    empregadas, sendo a taxa de desemprego de <span>${taxaDesemprego}</span> %. Por fim, por semana, trabalham em média <span>${horas}</span> horas e <span>${minutos}</span> minutos.`
+    paragrafo.innerHTML = `Em pesquisa realizada pelo Spotify, em 2024, o álbum mais ouvido foi The Tortured Poets Department, de Taylor Swift com <span>${dados.Taylor_Swift} bilhões de ouvintes</span>, para nosso segundo lugar foi o álbum Las Mujeres Ya No Lloran de Shakira com <span>${dados.Shakira} bilhões de ouvintes</span>. Na terceira colocação temos Hit Me Hard And Soft de Billie Eilish tendo <span>${dados.Billie_Eilish} bilhões de pessoas que ouviram</span>. Em quarto lugar foi o álbum de Jason Derulo, Nu King, com <span>${dados.Jason_Derulo} bilhões de ouvintes</span>. Em último colocado, com <span>${dados.Benson_Boone} bilhões</span> o álbum Fireworks & Rollerblades de Benson Boonem.`
     const container = document.getElementById('graficos-container')
     container.appendChild(paragrafo);
 }
