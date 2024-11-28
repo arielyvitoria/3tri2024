@@ -1,7 +1,7 @@
 import { getCSS} from "./common.js"
 
 async function empregos() {
-    const url = 'https://raw.githubusercontent.com/pmatjayme/api/refs/heads/main/ari.json'
+    const url='https://raw.githubusercontent.com/pmatjayme/api/refs/heads/main/ari.json'
     const res = await fetch(url)
     const dados = await res.json()
     const nomeX = Object.keys (dados)
